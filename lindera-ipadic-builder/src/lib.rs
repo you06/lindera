@@ -599,7 +599,7 @@ fn make_category_references(categories: &[String], entries: &[DictionaryEntry]) 
         .collect()
 }
 
-fn parse_unk(
+pub fn parse_unk(
     categories: &[String],
     file_content: &String,
 ) -> Result<UnknownDictionary, ParsingError> {
