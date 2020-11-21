@@ -18,10 +18,9 @@ impl ConnectionCostMatrix {
     pub fn cost(&self, forward_id: u32, backward_id: u32) -> i32 {
         let cost_id = (backward_id + forward_id * self.backward_size) as usize;
         match self.costs_data.get(cost_id * 2) {
-            Some(v) => {
-                unsafe {
-                    LittleEndian::read_i16(&[*v, *self.costs_data.get_unchecked(cost_id * 2 + 1)]) as i32
-                }
+            Some(v) => unsafe {
+                LittleEndian::read_i16(&[*v, *self.costs_data.get_unchecked(cost_id * 2 + 1)])
+                    as i32
             },
             None => 0,
         }
